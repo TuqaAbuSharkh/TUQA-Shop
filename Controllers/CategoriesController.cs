@@ -4,6 +4,9 @@ using TUQA_Shop.models;
 using Mapster;
 using TUQA_Shop.Services;
 using TUQA_Shop.DTOs;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using TUQA_Shop.Utility;
 
 namespace TUQA_Shop.Controllers
 {
@@ -19,40 +22,43 @@ namespace TUQA_Shop.Controllers
         }
 
         [HttpGet("")]
-        public IActionResult GetAll()
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAll()
         {
-            var categories = categoryService.GetAll();
+            var categories = await categoryService.GetAsync();
             return Ok(categories.Adapt<IEnumerable<CategoryResponse>>());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [AllowAnonymous]
+        public async Task<IActionResult> GetById(int id)
         {
-            var category = categoryService.Get(e => e.Id == id);
+            var category = await categoryService.GetOne(e => e.Id == id);
             return (category is null) ? NotFound() : Ok(category.Adapt<CategoryResponse>());
         }
 
         [HttpPost("")]
-        public IActionResult Creat([FromBody] CategoryRequest category)
+        [Authorize($"{StaticData.SuperAdmin},{StaticData.Admin},{StaticData.Company}")]
+        public async Task<IActionResult> Creat([FromBody] CategoryRequest category)
         {
-            var NewCategory = categoryService.Add(category.Adapt<Category>());
+            var NewCategory =await  categoryService.AddAsync(category.Adapt<Category>());
 
             return CreatedAtAction(nameof(GetById), new { NewCategory.Id }, NewCategory);
         }
 
         [HttpPut("")]
-        public IActionResult Update([FromRoute]int id, [FromBody]CategoryRequest category)
+        public async Task<IActionResult> Update([FromRoute]int id, [FromBody]CategoryRequest category)
         {
-            var newCategory = categoryService.update(id, category.Adapt<Category>());
+            var newCategory =await categoryService.updateAsync(id, category.Adapt<Category>());
             if (newCategory == false)
                 return NotFound();
             return NoContent();
         }
 
         [HttpDelete("")]
-        public IActionResult Delete([FromRoute]int id)
+        public async Task<IActionResult> Delete([FromRoute]int id)
         {
-            var category = categoryService.Delete(id);
+            var category =await  categoryService.RemoveAsync(id);
             if (category == false)
                 return NotFound();
             return NoContent();
