@@ -21,10 +21,22 @@ namespace TUQA_Shop.Controllers
 
 
         [HttpGet("")]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] string? query, [FromQuery] int page, [FromQuery] int limit = 10)
         {
-            var products = productService.GetAll();
-            return Ok(products.Adapt<IEnumerable<ProductResponse>>());
+            var products = productService.GetAll(query,page,limit);
+            if (products != null)
+            {
+                var baseUrl = $"{Request.Scheme}://{Request.Host}/images/";
+                var mappedProduct = products.ToList().Select(p =>
+                {
+                    var dto = p.Adapt<ProductResponse>();
+                    dto.mainImg = baseUrl + p.mainImg;
+                    return dto;
+                });
+
+                return Ok(mappedProduct);
+            }
+            return NotFound();
         }
 
 
@@ -42,7 +54,7 @@ namespace TUQA_Shop.Controllers
             var product = productRequest.Adapt<Product>();
             if (file!= null && file.Length > 0)
             {
-                var NewProduct = productService.Add(product);
+                var NewProduct = productService.Add(product.Adapt<ProductRequest>());
                 return CreatedAtAction(nameof(GetById), new { NewProduct.Id }, NewProduct);
 
             }

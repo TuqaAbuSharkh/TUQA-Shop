@@ -1,18 +1,14 @@
 ﻿using System.Linq.Expressions;
 using TUQA_Shop.models;
+using TUQA_Shop.Services.Iservice;
+
 
 namespace TUQA_Shop.Services
 {
-    public interface ICategoryService
+    public interface ICategoryService :IService<Category>
     {
-        IEnumerable<Category> GetAll();
+        public Task<bool> UpdateToggleAsync(int id, CancellationToken cancellationToken = default);
+        public Task<bool> updateAsync(int id, Category category, CancellationToken cancellationToken = default);
 
-        Category Get(Expression<Func<Category, bool>> expression);
-
-        Category Add(Category category);
-
-        bool update(int id, Category category);
-
-        bool Delete(int id);
     }
 }
