@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,6 +13,11 @@ using System.Threading.Tasks;
 using TUQA_Shop.DTOs;
 using TUQA_Shop.models;
 using TUQA_Shop.Services;
+=======
+using System.Threading.Tasks;
+using TUQA_Shop.DTOs;
+using TUQA_Shop.models;
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
 using TUQA_Shop.Utility;
 
 namespace TUQA_Shop.Controllers
@@ -23,25 +29,38 @@ namespace TUQA_Shop.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IEmailSender emailSender;
+<<<<<<< HEAD
         private readonly PasswordResetCodeService passwordResetCodeService;
 
         public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender, PasswordResetCodeService passwordResetCodeService)
+=======
+
+        public AccountController(UserManager<ApplicationUser> userManager,SignInManager<ApplicationUser> signInManager,IEmailSender emailSender)
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.emailSender = emailSender;
+<<<<<<< HEAD
             this.passwordResetCodeService = passwordResetCodeService;
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
         }
 
         [HttpPost("Register")]
 
+<<<<<<< HEAD
         public async Task<IActionResult> Register([FromBody] RegisterRequestUser request)
+=======
+        public async Task<IActionResult> Register([FromBody]RegisterRequestUser request)
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
         {
             var applicationUser = request.Adapt<ApplicationUser>();
             var result = await userManager.CreateAsync(applicationUser, request.Password);
 
             if (result.Succeeded)
             {
+<<<<<<< HEAD
                 await userManager.AddToRoleAsync(applicationUser, StaticData.Customer);
                 var token = await userManager.GenerateEmailConfirmationTokenAsync(applicationUser);
                 var emailConfirm = Url.Action(nameof(ConfirmEmail), "Account", new { token, userId = applicationUser.Id },
@@ -53,11 +72,17 @@ namespace TUQA_Shop.Controllers
                     $"<h1> welcom ..{applicationUser.FirstName}</h1> <p> t-shop , new account <p/>" +
                     $"<a href='{emailConfirm}'> click here </a>");
 
+=======
+                await emailSender.SendEmailAsync(applicationUser.Email, "Welcom", $"<h1> welcom ..{applicationUser.FirstName}</h1>");
+                await userManager.AddToRoleAsync(applicationUser, StaticData.Customer); 
+                await signInManager.SignInAsync(applicationUser, false);
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
                 return NoContent();
             }
             return BadRequest(result.Errors);
         }
 
+<<<<<<< HEAD
         [HttpGet("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string token, string userId)
         {
@@ -112,6 +137,21 @@ namespace TUQA_Shop.Controllers
                     return BadRequest(new { message = "your account is locked ,please try again later ." });
                 if (result.IsNotAllowed)
                     return BadRequest(new { message = "email not confirmed ." });
+=======
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody]LoginRequestUser request)
+        {
+            var  applicationUser = await userManager.FindByEmailAsync(request.Email);
+            if (applicationUser != null)
+            {
+                var result =await userManager.CheckPasswordAsync(applicationUser, request.Password);
+                if (result)
+                {
+                    await signInManager.SignInAsync(applicationUser,request.RemmberMe);
+                    return NoContent();
+                }
+
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             }
             return BadRequest(new { message = "invalid email or password !" });
         }
@@ -131,7 +171,11 @@ namespace TUQA_Shop.Controllers
         {
             var applicationUser = await userManager.GetUserAsync(User);
 
+<<<<<<< HEAD
             if (applicationUser != null)
+=======
+            if(applicationUser != null)
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             {
                 var result = await userManager.ChangePasswordAsync(applicationUser, request.OldPassword, request.NewPassword);
 
@@ -142,6 +186,7 @@ namespace TUQA_Shop.Controllers
             }
             return BadRequest(new { message = "invalid data !" });
         }
+<<<<<<< HEAD
 
         [HttpPost("ForgetPassword")]
         public async Task<IActionResult> ForgetPassword(forgetPassword request)
@@ -206,5 +251,7 @@ namespace TUQA_Shop.Controllers
 
 
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
     }
 }

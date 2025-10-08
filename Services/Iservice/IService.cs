@@ -11,7 +11,10 @@ namespace TUQA_Shop.Services.Iservice
         Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
 
         Task<bool> RemoveAsync(int id, CancellationToken cancellationToken = default);
+<<<<<<< HEAD
         Task<int> CommitAsync( CancellationToken cancellationToken = default);
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
     }
 
 }

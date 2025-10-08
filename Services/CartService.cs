@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 ﻿using Microsoft.EntityFrameworkCore;
 using TUQA_Shop.Data;
+=======
+﻿using TUQA_Shop.Data;
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
 using TUQA_Shop.models;
 using TUQA_Shop.Services.Iservice;
 
@@ -13,6 +17,7 @@ namespace TUQA_Shop.Services
         {
             this._context = context;
         }
+<<<<<<< HEAD
 
         public async Task<Cart> AddToCart(string userId, int ProductId, CancellationToken cancellationToken)
         {
@@ -52,5 +57,7 @@ namespace TUQA_Shop.Services
         }
 
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
     }
 }

@@ -24,6 +24,7 @@ namespace TUQA_Shop.Controllers
         public IActionResult GetAll([FromQuery] string? query, [FromQuery] int page, [FromQuery] int limit = 10)
         {
             var products = productService.GetAll(query,page,limit);
+<<<<<<< HEAD
             if (products != null)
             {
                 var baseUrl = $"{Request.Scheme}://{Request.Host}/images/";
@@ -36,6 +37,10 @@ namespace TUQA_Shop.Controllers
 
                 return Ok(mappedProduct);
             }
+=======
+            if(products !=null)
+                return Ok(products.Adapt<IEnumerable<ProductResponse>>());
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             return NotFound();
         }
 

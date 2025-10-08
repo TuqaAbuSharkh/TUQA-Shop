@@ -17,7 +17,11 @@ namespace TUQA_Shop.Services.Iservice
         public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _context.AddAsync(entity, cancellationToken);
+<<<<<<< HEAD
             await _context.SaveChangesAsync(cancellationToken);
+=======
+            await _context.SaveChangesAsync();
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             return entity;
         }
 
@@ -55,6 +59,7 @@ namespace TUQA_Shop.Services.Iservice
             await _context.SaveChangesAsync(cancellationToken);
             return true;
         }
+<<<<<<< HEAD
 
 
         public async Task<int> CommitAsync( CancellationToken cancellationToken = default)
@@ -63,5 +68,7 @@ namespace TUQA_Shop.Services.Iservice
             return await _context.SaveChangesAsync(cancellationToken);
         }
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
     }
 }

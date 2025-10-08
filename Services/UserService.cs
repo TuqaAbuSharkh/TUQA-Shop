@@ -34,6 +34,7 @@ namespace TUQA_Shop.Services
             }
             return false;
         }
+<<<<<<< HEAD
 
         public async Task<bool?> LockUnlock(string userId)
         {
@@ -56,5 +57,7 @@ namespace TUQA_Shop.Services
             await userManager.UpdateAsync(user);
             return !isLockedNow;
         }
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
     }
 }

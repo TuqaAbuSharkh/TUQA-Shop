@@ -312,6 +312,7 @@ namespace TUQA_Shop.Migrations
                     b.ToTable("Categories");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("TUQA_Shop.models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -405,6 +406,8 @@ namespace TUQA_Shop.Migrations
                     b.ToTable("PasswordResetCode");
                 });
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             modelBuilder.Entity("TUQA_Shop.models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -455,6 +458,7 @@ namespace TUQA_Shop.Migrations
                     b.ToTable("Products");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("TUQA_Shop.models.Review", b =>
                 {
                     b.Property<int>("Id")
@@ -510,6 +514,8 @@ namespace TUQA_Shop.Migrations
                     b.ToTable("ReviewImages");
                 });
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -580,6 +586,7 @@ namespace TUQA_Shop.Migrations
                     b.Navigation("Product");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("TUQA_Shop.models.Order", b =>
                 {
                     b.HasOne("TUQA_Shop.models.ApplicationUser", "ApplicationUser")
@@ -621,6 +628,8 @@ namespace TUQA_Shop.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             modelBuilder.Entity("TUQA_Shop.models.Product", b =>
                 {
                     b.HasOne("TUQA_Shop.models.Brand", null)
@@ -636,6 +645,7 @@ namespace TUQA_Shop.Migrations
                     b.Navigation("category");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("TUQA_Shop.models.Review", b =>
                 {
                     b.HasOne("TUQA_Shop.models.ApplicationUser", "ApplicationUser")
@@ -666,6 +676,8 @@ namespace TUQA_Shop.Migrations
                     b.Navigation("Review");
                 });
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             modelBuilder.Entity("TUQA_Shop.models.Brand", b =>
                 {
                     b.Navigation("Products");
@@ -674,11 +686,14 @@ namespace TUQA_Shop.Migrations
             modelBuilder.Entity("TUQA_Shop.models.Category", b =>
                 {
                     b.Navigation("Products");
+<<<<<<< HEAD
                 });
 
             modelBuilder.Entity("TUQA_Shop.models.Review", b =>
                 {
                     b.Navigation("ReviewImages");
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
                 });
 #pragma warning restore 612, 618
         }

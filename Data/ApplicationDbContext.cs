@@ -24,6 +24,7 @@ namespace TUQA_Shop.Data
 
         public DbSet<Cart> Carts { get; set; }
 
+<<<<<<< HEAD
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderItem> OrderItems { get; set; }
@@ -33,5 +34,7 @@ namespace TUQA_Shop.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<ReviewImages> ReviewImages { get; set; }
 
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
     }
 }

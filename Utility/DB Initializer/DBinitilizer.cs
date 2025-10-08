@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 ﻿using Microsoft.EntityFrameworkCore;
 using TUQA_Shop.Data;
 using TUQA_Shop.models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
 
+=======
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using TUQA_Shop.Data;
+using TUQA_Shop.models;
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
 
 namespace TUQA_Shop.Utility.DB_Initializer
 {
@@ -32,7 +40,11 @@ namespace TUQA_Shop.Utility.DB_Initializer
                 Console.WriteLine(ex.Message);
             }
 
+<<<<<<< HEAD
             if (roleManager.Roles == null)
+=======
+            if (roleManager.Roles.IsNullOrEmpty())
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
             {
                 await roleManager.CreateAsync(new ("SuperAdmin"));
                 await roleManager.CreateAsync(new("Admin"));

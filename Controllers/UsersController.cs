@@ -46,6 +46,7 @@ namespace TUQA_Shop.Controllers
             var result = await userService.ChangeRole(userId, roleName);
             return Ok(result);
         }
+<<<<<<< HEAD
 
         [HttpPut("LockUnlock/{userId}")]
 
@@ -59,5 +60,7 @@ namespace TUQA_Shop.Controllers
             }
             else return BadRequest();
         }
+=======
+>>>>>>> c834fd62c84bfde81c178f6e24c295094fbd524a
     }
 }
