@@ -12,7 +12,7 @@ using TUQA_Shop.models;
 using TUQA_Shop.Services;
 using TUQA_Shop.Utility;
 using TUQA_Shop.Utility.DB_Initializer;
-using DotNetEnv;
+
 
 namespace TUQA_Shop
 {
@@ -22,7 +22,7 @@ namespace TUQA_Shop
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            Env.Load();
+            
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -84,8 +84,7 @@ namespace TUQA_Shop
                 };
             });
 
-            var connectionString = Environment.GetEnvironmentVariable("DB_SERVER");
-            Console.WriteLine($"Database server: {connectionString}");
+          
 
             var app = builder.Build();
 
